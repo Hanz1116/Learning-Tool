@@ -55,3 +55,13 @@ learning_tool/       # Core logic
 data/notes/*.md      # Your study notes (plain Markdown)
 data/learning.db     # Quiz questions, attempts, review schedule (not committed)
 ```
+
+## TAPP refill price tracker
+
+`price_tracker/` is a separate, standalone script that watches
+<https://tappwater.com.au/products/tap-water-filter-refills> once a day via GitHub Actions
+(`.github/workflows/price-tracker.yml`). It reads the store's product data (current price,
+"was" price, stock per pack size) and scans the product page and homepage for
+promo/coupon text (e.g. "15% off", "use code …", "sale"). When anything changes, it
+opens a GitHub issue that @-mentions you, so you get an email. Run it on demand from the
+Actions tab ("Run workflow"), or locally with `python price_tracker/track.py`.
